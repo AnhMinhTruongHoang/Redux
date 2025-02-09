@@ -1,30 +1,23 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
-import { useSelector } from "react-redux";
-import { RootState } from "./redux/store";
+import { decrement, increment } from "./redux/counter/counter.slide";
+import { useAppDispatch, useAppSelector } from "./redux/counter/hooks";
+import Button from "react-bootstrap/Button";
+import Header from "./components/header";
+import { TabContent } from "react-bootstrap";
+import TabsContent from "./components/tabs.content";
+import UsersTable from "./components/users.table";
 
 function App() {
-  const count = useSelector((state: RootState) => state.counter);
-  console.log(">>count", count);
-  
+  // const count = useSelector((state: RootState) => state.counter);
+
+  const count = useAppSelector((state) => state.counter);
+  const dispatch = useAppDispatch();
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <div>
-        <h1> My current = {count.value} </h1>
-        <div>
-          <button> + 1</button>
-        </div>
-      </div>
+      <Header />
+      <TabsContent />
     </>
   );
 }
